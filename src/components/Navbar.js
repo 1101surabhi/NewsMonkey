@@ -87,10 +87,12 @@ export class Navbar extends Component {
                 </li>
               </ul>
             </div>
+            {/* <div className="d-flex justify-content-center" style={{width:"100%"}}> */}
             <form className="d-flex" role="search" onSubmit={this.searchSubmitHandler}>
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={this.state.searchInput} onChange={this.searchChangeHandler}/>
         <button className="btn btn-dark" type="submit">Search</button>
       </form>
+      {/* </div> */}
           </div>
         </nav>
       </>
