@@ -1,34 +1,32 @@
 import React, { Component } from "react";
 
-export class NewsItem extends Component {
-  render() {
-    let { title, description, imageUrl, newsUrl, author, date, source } = this.props;
+const NewsItem = (props) => {
     return (
       <>
         <div className="card my-3" style={{ width: "auto", height: "405px" }}>
         <div style={{display: 'flex', justifyContent: 'flex-end', position: 'absolute' ,right: 0}}>
           <span className="badge rounded-pill bg-danger">
-            {source}
+            {props.source}
           </span>
           </div>
           <img
-            src={imageUrl}
+            src={props.imageUrl}
             className="card-img-top"
             alt="..."
             height={"161px"}
             width={"286px"}
           />
           <div className="card-body">
-            <h5 className="card-title">{title}...</h5>
-            <p className="card-text">{description}...</p>
+            <h5 className="card-title">{props.title}...</h5>
+            <p className="card-text">{props.description}...</p>
             <p className="card-text">
               <small className="text-body-secondary">
-                By {author ? author : "unknown"} on{" "}
-                {new Date(date).toGMTString()}
+                By {props.author ? props.author : "unknown"} on{" "}
+                {new Date(props.date).toGMTString()}
               </small>
             </p>
             <a
-              href={newsUrl}
+              href={props.newsUrl}
               target="_blank"
               rel="noreferrer"
               className="btn btn-sm btn-dark"
@@ -39,7 +37,6 @@ export class NewsItem extends Component {
         </div>
       </>
     );
-  }
 }
 
 export default NewsItem;

@@ -1,30 +1,23 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export class Navbar extends Component {
-  constructor(){
-    super() ;
-    this.state = {
-      searchInput : ""
-    }
+const Navbar = (props) => {
+
+  const [searchInput, setSearchInput] = useState("") ;
+
+  const searchChangeHandler = (event) => {
+    setSearchInput(event.target.value) ;
   }
 
-  searchChangeHandler = (event) => {
-    // console.log(event) ;
-    this.setState({searchInput : event.target.value}) ;
-  }
-
-  searchSubmitHandler = (event) => {
+  const searchSubmitHandler = (event) => {
     event.preventDefault() ;
-    // console.log(this.state.searchInput) ;
-    this.props.onSearch(this.state.searchInput) ;
-    this.setState({searchInput : ''}) ;
+    props.onSearch(searchInput) ;
+    setSearchInput('') ;
   }
-
-  render() {
+  
     return (
       <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               NewsMonkey
@@ -87,17 +80,14 @@ export class Navbar extends Component {
                 </li>
               </ul>
             </div>
-            {/* <div className="d-flex justify-content-center" style={{width:"100%"}}> */}
-            <form className="d-flex" role="search" onSubmit={this.searchSubmitHandler}>
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={this.state.searchInput} onChange={this.searchChangeHandler}/>
+            <form className="d-flex" role="search" onSubmit={searchSubmitHandler}>
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchInput} onChange={searchChangeHandler}/>
         <button className="btn btn-dark" type="submit">Search</button>
       </form>
-      {/* </div> */}
           </div>
         </nav>
       </>
     );
-  }
 }
 
 export default Navbar;
